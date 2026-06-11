@@ -1,12 +1,13 @@
-/* --- DESIGN HARMONIOSO & PREMIUM --- */
+/* --- PALETA STARDEW VALLEY STYLE --- */
 :root {
-    --bg-color: #F7F4EF;       /* Areia Suave Minimalista */
-    --primary-color: #2B3A33;  /* Verde Floresta Profundo Orgânico */
-    --accent-color: #C86B55;   /* Terracota/Argila Aquecido */
-    --text-dark: #333634;      /* Grafite Natural para leitura confortável */
-    --card-bg: #FFFFFF;
-    --font-serif: 'Playfair Display', Georgia, serif;
-    --font-sans: 'Plus Jakarta Sans', sans-serif;
+    --bg-outside: #6FA142;      /* Verde Grama clássico do mapa */
+    --menu-bg: #F3CD91;         /* Amarelo Creme do fundo dos menus */
+    --menu-border: #7A431D;     /* Castanho Escuro de Madeira para as bordas */
+    --menu-border-light: #DCA267;/* Tom de madeira clara para o relevo */
+    --text-color: #4A2306;      /* Marrom escuro quase preto para os textos */
+    --accent-gold: #FFD700;     /* Ouro para destaques */
+    --font-pixel: 'VT323', monospace;
+    --font-clean: 'Plus Jakarta Sans', sans-serif;
 }
 
 * {
@@ -16,131 +17,123 @@
 }
 
 body {
-    background-color: var(--bg-color);
-    color: var(--text-dark);
-    font-family: var(--font-sans);
-    line-height: 1.7;
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
+    background-color: var(--bg-outside);
+    /* Padrão quadriculado sutil de pixel art no fundo */
+    background-image: linear-gradient(rgba(0,0,0,0.04) 2px, transparent 2px),
+                      linear-gradient(90deg, rgba(0,0,0,0.04) 2px, transparent 2px);
+    background-size: 20px 20px;
+    color: var(--text-color);
+    font-family: var(--font-clean);
+    padding-bottom: 3rem;
 }
 
-/* Header e Identidade Visual */
+/* Header estilizado como uma placa de madeira */
 header {
-    padding: 2.5rem 10%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    background-color: #8B4F26;
+    border: 4px solid #4A2812;
+    box-shadow: inset -4px -4px 0px #5E3216, inset 4px 4px 0px #B56D3A;
+    padding: 1.5rem;
+    margin: 2rem auto;
+    max-width: 90%;
+    text-align: center;
+    color: #FFF;
 }
 
 .logo {
-    font-family: var(--font-sans);
-    font-weight: 700;
-    font-size: 1.1rem;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    color: var(--primary-color);
+    font-family: var(--font-pixel);
+    font-size: 3rem;
+    letter-spacing: 2px;
+    text-shadow: 3px 3px 0px #000;
 }
 
 .logo span {
-    color: var(--accent-color);
-    font-weight: 400;
+    color: var(--accent-gold);
 }
 
 .tagline {
-    font-family: var(--font-sans);
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: var(--primary-color);
-    opacity: 0.6;
+    font-family: var(--font-pixel);
+    font-size: 1.5rem;
+    color: #FFECB3;
 }
 
-/* Hero Section (Design Editorial) */
+/* Hero Section */
 .hero {
-    padding: 6rem 10% 4rem 10%;
     text-align: center;
-    max-width: 950px;
-    margin: 0 auto;
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    color: #FFF;
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.5);
 }
 
 .hero h1 {
-    font-family: var(--font-serif);
+    font-family: var(--font-pixel);
     font-size: 3.5rem;
-    color: var(--primary-color);
-    font-weight: 500;
-    line-height: 1.2;
-    margin-bottom: 2rem;
+    line-height: 1;
+    margin-bottom: 1rem;
 }
 
 .hero h1 strong {
-    font-weight: 600;
-    font-style: italic;
-    color: var(--accent-color);
+    color: var(--accent-gold);
 }
 
 .hero p {
-    font-family: var(--font-sans);
-    font-size: 1.15rem;
-    font-weight: 400;
-    color: var(--primary-color);
-    opacity: 0.8;
-    max-width: 700px;
+    font-size: 1.1rem;
+    max-width: 600px;
     margin: 0 auto;
 }
 
-/* Abas de Navegação (Estilo Linha Clean) */
+/* Abas estilo Botões de Interface de RPG */
 .tabs-container {
     display: flex;
     justify-content: center;
-    gap: 15px;
-    margin-bottom: 3.5rem;
+    gap: 12px;
+    margin: 2.5rem auto;
     flex-wrap: wrap;
-    padding: 0 5%;
+    max-width: 90%;
 }
 
 .tab-btn {
-    background: none;
-    border: 1px solid rgba(43, 58, 51, 0.15);
-    padding: 0.9rem 1.8rem;
+    background-color: #D29A53;
+    color: #FFF;
+    border: 4px solid var(--menu-border);
+    box-shadow: inset -4px -4px 0px #94632D, inset 4px 4px 0px #F5C285, 0 4px 0px rgba(0,0,0,0.2);
+    padding: 0.8rem 1.5rem;
     cursor: pointer;
-    font-family: var(--font-sans);
-    font-size: 0.85rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border-radius: 50px; /* Botões arredondados modernos */
-    color: var(--primary-color);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: var(--font-pixel);
+    font-size: 1.6rem;
+    border-radius: 0px; /* Mantém o aspecto quadrado pixelado */
+    transition: transform 0.1s ease, background 0.2s;
 }
 
 .tab-btn:hover {
-    border-color: var(--primary-color);
-    background-color: rgba(43, 58, 51, 0.03);
+    background-color: #E2AC65;
+    transform: translateY(-2px);
 }
 
 .tab-btn.active {
-    background-color: var(--primary-color);
-    color: var(--bg-color);
-    border-color: var(--primary-color);
-    box-shadow: 0 4px 15px rgba(43, 58, 51, 0.15);
+    background-color: #4CAF50; /* Ativado vira verde planta */
+    box-shadow: inset -4px -4px 0px #2E7D32, inset 4px 4px 0px #A1E5AB;
+    transform: translateY(2px);
 }
 
-/* Seção de Conteúdo (Cards Flutuantes e Arredondados) */
+/* Caixa de Diálogo Clássica do Jogo (Menu de Conteúdo) */
 .content-section {
-    max-width: 900px;
+    max-width: 850px;
     margin: 0 auto;
-    padding: 0 5% 7rem 5%;
+    padding: 0 1rem;
 }
 
 .content-card {
-    background-color: var(--card-bg);
-    padding: 4rem;
-    border-radius: 16px; /* Cantos arredondados orgânicos */
-    box-shadow: 0 15px 45px rgba(43, 58, 51, 0.04); /* Sombra super suave */
-    border: 1px solid rgba(43, 58, 51, 0.04);
+    background-color: var(--menu-bg);
+    /* Borda Tripla simulando a caixa de menu do Stardew */
+    border: 6px solid var(--menu-border);
+    outline: 2px solid #FDF5E6;
+    outline-offset: -8px;
+    padding: 3rem;
+    box-shadow: 0 10px 0px rgba(0,0,0,0.15);
     display: none;
-    animation: slideUpFade 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    animation: pixelAppear 0.2s steps(2) forwards;
 }
 
 .content-card.active {
@@ -148,11 +141,67 @@ header {
 }
 
 .content-card h2 {
-    font-family: var(--font-serif);
-    color: var(--primary-color);
-    font-size: 2.2rem;
-    font-weight: 500;
-    margin-bottom: 1.5rem;
+    font-family: var(--font-pixel);
+    font-size: 3rem;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    border-bottom: 4px dashed rgba(74, 35, 6, 0.2);
+    padding-bottom: 0.5rem;
 }
 
-.content-card p
+.content-card p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    font-weight: 500;
+}
+
+/* Lista de Itens com ícones de Pixel */
+.topic-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.topic-list li {
+    position: relative;
+    padding-left: 2rem;
+    font-size: 1.1rem;
+}
+
+/* Pequeno quadradinho pixelado substituindo os bullets */
+.topic-list li::before {
+    content: "▪";
+    position: absolute;
+    left: 0;
+    top: -2px;
+    color: #BD5300;
+    font-size: 1.8rem;
+}
+
+.topic-list li strong {
+    color: #933A00;
+}
+
+/* Rodapé */
+footer {
+    text-align: center;
+    margin-top: 4rem;
+    font-family: var(--font-pixel);
+    font-size: 1.4rem;
+    color: #FFF;
+    text-shadow: 1px 1px 0px #000;
+}
+
+/* Animação travadinha (estilo frames de jogos antigos) */
+@keyframes pixelAppear {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Ajustes Responsivos */
+@media (max-width: 768px) {
+    .hero h1 { font-size: 2.5rem; }
+    .content-card { padding: 1.5rem; }
+    .logo { font-size: 2.2rem; }
+}
