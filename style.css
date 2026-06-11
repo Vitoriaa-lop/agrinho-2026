@@ -1,125 +1,146 @@
-/* --- ESTILO MINIMALISTA PREMIUM --- */
+/* --- DESIGN HARMONIOSO & PREMIUM --- */
 :root {
-    --bg-color: #F4F1DE;       /* Creme/Areia (60%) */
-    --primary-color: #3D405B;  /* Verde Oliva Escuro / Azul Metálico (30%) */
-    --accent-color: #E07A5F;   /* Terracota (10%) */
-    --text-dark: #2A2C3E;
+    --bg-color: #F7F4EF;       /* Areia Suave Minimalista */
+    --primary-color: #2B3A33;  /* Verde Floresta Profundo Orgânico */
+    --accent-color: #C86B55;   /* Terracota/Argila Aquecido */
+    --text-dark: #333634;      /* Grafite Natural para leitura confortável */
     --card-bg: #FFFFFF;
+    --font-serif: 'Playfair Display', Georgia, serif;
+    --font-sans: 'Plus Jakarta Sans', sans-serif;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
     background-color: var(--bg-color);
     color: var(--text-dark);
-    line-height: 1.6;
+    font-family: var(--font-sans);
+    line-height: 1.7;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
 }
 
 /* Header e Identidade Visual */
 header {
-    padding: 2rem 10%;
+    padding: 2.5rem 10%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid rgba(61, 64, 91, 0.1);
 }
 
 .logo {
+    font-family: var(--font-sans);
     font-weight: 700;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
     color: var(--primary-color);
 }
 
 .logo span {
     color: var(--accent-color);
+    font-weight: 400;
 }
 
 .tagline {
-    font-size: 0.85rem;
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
     color: var(--primary-color);
-    opacity: 0.8;
+    opacity: 0.6;
 }
 
-/* Hero Section (Alinhamento de Expectativas do Avaliador) */
+/* Hero Section (Design Editorial) */
 .hero {
-    padding: 5rem 10% 3rem 10%;
+    padding: 6rem 10% 4rem 10%;
     text-align: center;
-    max-width: 900px;
+    max-width: 950px;
     margin: 0 auto;
 }
 
 .hero h1 {
-    font-size: 2.8rem;
+    font-family: var(--font-serif);
+    font-size: 3.5rem;
     color: var(--primary-color);
-    font-weight: 400;
-    letter-spacing: -1px;
-    margin-bottom: 1.5rem;
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: 2rem;
 }
 
 .hero h1 strong {
-    font-weight: 700;
+    font-weight: 600;
+    font-style: italic;
     color: var(--accent-color);
 }
 
 .hero p {
-    font-size: 1.1rem;
+    font-family: var(--font-sans);
+    font-size: 1.15rem;
+    font-weight: 400;
     color: var(--primary-color);
-    opacity: 0.9;
-    margin-bottom: 2rem;
+    opacity: 0.8;
+    max-width: 700px;
+    margin: 0 auto;
 }
 
-/* Filtros e Abas de Navegação */
+/* Abas de Navegação (Estilo Linha Clean) */
 .tabs-container {
     display: flex;
     justify-content: center;
-    gap: 10px;
-    margin-bottom: 3rem;
+    gap: 15px;
+    margin-bottom: 3.5rem;
     flex-wrap: wrap;
     padding: 0 5%;
 }
 
 .tab-btn {
     background: none;
-    border: 1px solid rgba(61, 64, 91, 0.3);
-    padding: 0.8rem 1.5rem;
+    border: 1px solid rgba(43, 58, 51, 0.15);
+    padding: 0.9rem 1.8rem;
     cursor: pointer;
-    font-size: 0.9rem;
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
     font-weight: 600;
-    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 50px; /* Botões arredondados modernos */
     color: var(--primary-color);
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.tab-btn:hover, .tab-btn.active {
+.tab-btn:hover {
+    border-color: var(--primary-color);
+    background-color: rgba(43, 58, 51, 0.03);
+}
+
+.tab-btn.active {
     background-color: var(--primary-color);
     color: var(--bg-color);
     border-color: var(--primary-color);
+    box-shadow: 0 4px 15px rgba(43, 58, 51, 0.15);
 }
 
-/* Secção de Cartões Dinâmicos */
+/* Seção de Conteúdo (Cards Flutuantes e Arredondados) */
 .content-section {
-    max-width: 1000px;
+    max-width: 900px;
     margin: 0 auto;
-    padding: 0 10% 5rem 10%;
+    padding: 0 5% 7rem 5%;
 }
 
 .content-card {
     background-color: var(--card-bg);
-    padding: 3rem;
-    border-radius: 8px;
-    box-shadow: 0 10px 30px rgba(61, 64, 91, 0.05);
-    display: none; /* Oculto por padrão, controlado via JS */
-    animation: fadeIn 0.5s ease forwards;
+    padding: 4rem;
+    border-radius: 16px; /* Cantos arredondados orgânicos */
+    box-shadow: 0 15px 45px rgba(43, 58, 51, 0.04); /* Sombra super suave */
+    border: 1px solid rgba(43, 58, 51, 0.04);
+    display: none;
+    animation: slideUpFade 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 .content-card.active {
@@ -127,70 +148,11 @@ header {
 }
 
 .content-card h2 {
+    font-family: var(--font-serif);
     color: var(--primary-color);
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.content-card h2::before {
-    content: '';
-    display: inline-block;
-    width: 8px;
-    height: 24px;
-    background-color: var(--accent-color);
-    border-radius: 2px;
-}
-
-.content-card p {
+    font-size: 2.2rem;
+    font-weight: 500;
     margin-bottom: 1.5rem;
-    color: #4a4a4a;
-    font-size: 1.05rem;
 }
 
-/* Lista de Tópicos Internos */
-.topic-list {
-    list-style: none;
-    margin-top: 1.5rem;
-}
-
-.topic-list li {
-    position: relative;
-    padding-left: 1.5rem;
-    margin-bottom: 1rem;
-    font-size: 1rem;
-}
-
-.topic-list li::before {
-    content: "✓";
-    position: absolute;
-    left: 0;
-    color: var(--accent-color);
-    font-weight: bold;
-}
-
-/* Rodapé */
-footer {
-    text-align: center;
-    padding: 2rem;
-    border-top: 1px solid rgba(61, 64, 91, 0.1);
-    font-size: 0.8rem;
-    color: var(--primary-color);
-    opacity: 0.7;
-    letter-spacing: 1px;
-}
-
-/* Animação de Transição Sutil */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Responsividade para Ecrãs Pequenos/Telemóveis */
-@media (max-width: 768px) {
-    .hero h1 { font-size: 2rem; }
-    .content-card { padding: 1.5rem; }
-    header { flex-direction: column; gap: 1rem; text-align: center; }
-}
+.content-card p
