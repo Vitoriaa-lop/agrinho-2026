@@ -1,11 +1,10 @@
-/* --- PALETA STARDEW VALLEY STYLE --- */
+/* --- ESTILO VALE DO AGRO --- */
 :root {
-    --bg-outside: #6FA142;      /* Verde Grama clássico do mapa */
-    --menu-bg: #F3CD91;         /* Amarelo Creme do fundo dos menus */
-    --menu-border: #7A431D;     /* Castanho Escuro de Madeira para as bordas */
-    --menu-border-light: #DCA267;/* Tom de madeira clara para o relevo */
-    --text-color: #4A2306;      /* Marrom escuro quase preto para os textos */
-    --accent-gold: #FFD700;     /* Ouro para destaques */
+    --bg-outside: #6FA142;      
+    --menu-bg: #F3CD91;         
+    --menu-border: #7A431D;     
+    --text-color: #4A2306;      
+    --accent-gold: #FFD700;     
     --font-pixel: 'VT323', monospace;
     --font-clean: 'Plus Jakarta Sans', sans-serif;
 }
@@ -26,7 +25,6 @@ body {
     padding-bottom: 3rem;
 }
 
-/* Header estilizado como uma placa de madeira */
 header {
     background-color: #8B4F26;
     border: 4px solid #4A2812;
@@ -55,7 +53,6 @@ header {
     color: #FFECB3;
 }
 
-/* Hero Section */
 .hero {
     text-align: center;
     max-width: 800px;
@@ -68,7 +65,7 @@ header {
 .pixel-icon-top {
     width: 90px;
     height: auto;
-    image-rendering: pixelated; /* Mantém os pixels nítidos */
+    image-rendering: pixelated;
     margin-bottom: 1rem;
 }
 
@@ -89,7 +86,6 @@ header {
     margin: 0 auto;
 }
 
-/* Abas estilo Botões de Interface de RPG */
 .tabs-container {
     display: flex;
     justify-content: center;
@@ -108,7 +104,6 @@ header {
     cursor: pointer;
     font-family: var(--font-pixel);
     font-size: 1.6rem;
-    border-radius: 0px;
     transition: transform 0.1s ease, background 0.2s;
 }
 
@@ -123,13 +118,13 @@ header {
     transform: translateY(2px);
 }
 
-/* Caixa de Diálogo Clássica do Jogo (Menu de Conteúdo) */
 .content-section {
     max-width: 850px;
     margin: 0 auto;
     padding: 0 1rem;
 }
 
+/* IMPORTANTE: Começam escondidos para a troca funcionar */
 .content-card {
     background-color: var(--menu-bg);
     border: 6px solid var(--menu-border);
@@ -137,10 +132,11 @@ header {
     outline-offset: -8px;
     padding: 3rem;
     box-shadow: 0 10px 0px rgba(0,0,0,0.15);
-    display: none;
+    display: none; 
     animation: pixelAppear 0.2s steps(2) forwards;
 }
 
+/* Mostra apenas o que tiver a classe active */
 .content-card.active {
     display: block;
 }
@@ -154,7 +150,6 @@ header {
     padding-bottom: 0.5rem;
 }
 
-/* Estilização das Imagens dos Cards */
 .card-image {
     width: 100%;
     max-height: 350px;
@@ -163,7 +158,7 @@ header {
     box-shadow: 0 6px 0px rgba(0,0,0,0.1);
     margin-bottom: 2rem;
     display: block;
-    image-rendering: pixelated; /* Impede o navegador de embaçar a pixel art */
+    image-rendering: pixelated;
 }
 
 .content-card p {
@@ -172,7 +167,6 @@ header {
     font-weight: 500;
 }
 
-/* Lista de Itens */
 .topic-list {
     list-style: none;
     display: flex;
@@ -199,7 +193,6 @@ header {
     color: #933A00;
 }
 
-/* Rodapé */
 footer {
     text-align: center;
     margin-top: 4rem;

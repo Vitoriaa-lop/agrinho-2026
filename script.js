@@ -1,26 +1,25 @@
-// Aguarda o carregamento completo do DOM para evitar erros de execução
 document.addEventListener('DOMContentLoaded', () => {
-    
-    const buttons = document.querySelectorAll('.tab-btn');
+    // Captura todos os botões e todos os blocos de informação
+    const botoes = document.querySelectorAll('.tab-btn');
     const cards = document.querySelectorAll('.content-card');
 
-    buttons.forEach(button => {
-        button.addEventListener('click', (event) => {
-            // 1. Remove o estado ativo de todos os botões
-            buttons.forEach(btn => btn.classList.remove('active'));
+    botoes.forEach(botao => {
+        botao.addEventListener('click', (event) => {
+            // 1. Desativa o efeito visual de todos os botões
+            botoes.forEach(b => b.classList.remove('active'));
             
-            // 2. Remove o estado ativo de todos os cartões de conteúdo
-            cards.forEach(card => card.classList.remove('active'));
+            // 2. Esconde todas as informações da tela
+            cards.forEach(c => c.classList.remove('active'));
 
-            // 3. Adiciona a classe ativa ao botão que foi clicado
+            // 3. Ativa o botão que acabou de ser apertado
             event.currentTarget.classList.add('active');
 
-            // 4. Identifica o alvo através do atributo 'data-target' e ativa o cartão correspondente
-            const targetId = event.currentTarget.getAttribute('data-target');
-            const targetCard = document.getElementById(targetId);
+            // 4. Pega o alvo do botão e mostra a informação correspondente
+            const alvoId = event.currentTarget.getAttribute('data-target');
+            const cardCorrespondente = document.getElementById(alvoId);
             
-            if (targetCard) {
-                targetCard.classList.add('active');
+            if (cardCorrespondente) {
+                cardCorrespondente.classList.add('active');
             }
         });
     });
