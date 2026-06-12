@@ -33,7 +33,7 @@ body {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: #000; /* Fundo preto por trás caso a imagem carregue */
+    background-color: #000;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -48,32 +48,29 @@ body {
     cursor: pointer;
 }
 
-/* A imagem agora ocupa absolutamente todo o espaço disponível */
 .logo-gigante {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Faz a imagem preencher a tela inteira sem distorcer */
-    image-rendering: pixelated; /* Mantém os pixels nítidos estilo videogame */
+    object-fit: cover;
+    image-rendering: pixelated;
     transition: transform 0.3s ease;
 }
 
-/* Efeito sutil ao passar o mouse */
 .logo-gigante:hover {
     transform: scale(1.02);
 }
 
-/* Texto flutuando sobre a imagem em tela cheia */
 .piscar-texto {
     position: absolute;
-    bottom: 10%; /* Posiciona o texto perto da parte inferior da tela */
+    bottom: 10%;
     left: 50%;
     transform: translateX(-50%);
     font-family: var(--font-pixel);
     font-size: 2.2rem;
     color: var(--accent-gold);
-    text-shadow: 3px 3px 0px #000, -2px -2px 0px #000, 2px -2px 0px #000, -2px 2px 0px #000; /* Sombra completa para ler por cima da foto */
+    text-shadow: 3px 3px 0px #000, -2px -2px 0px #000, 2px -2px 0px #000, -2px 2px 0px #000;
     animation: piscar 1.2s infinite;
-    pointer-events: none; /* Permite que o clique passe direto para o contêiner */
+    pointer-events: none;
     white-space: nowrap;
 }
 
@@ -92,6 +89,8 @@ header {
     max-width: 90%;
     text-align: center;
     color: #FFF;
+    position: relative;
+    z-index: 10; /* Fica acima do fundo */
 }
 
 .logo {
@@ -116,21 +115,48 @@ header {
     display: none !important;
 }
 
+/* --- TELA INICIAL COM O BROTO DE OURO DESFOCADO NO FUNDO --- */
 .hero {
     text-align: center;
-    max-width: 800px;
+    max-width: 850px;
     margin: 3rem auto 2rem auto;
-    padding: 0 1rem;
-    color: #FFF;
-    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.5);
+    padding: 3rem 2rem;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 4px solid var(--menu-border);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+}
+
+/* Cria o efeito do fundo desfocado sem afetar o texto */
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    background-image: url('img/broto_de_ouro.png');
+    background-size: cover;
+    background-position: center;
+    filter: blur(8px) brightness(0.5); /* Aplica o desfoque e escurece um pouco para dar contraste */
+    transform: scale(1.1); /* Evita bordas brancas causadas pelo desfoque */
+    z-index: 1;
+}
+
+/* Garante que os textos fiquem por cima do desfoque */
+.hero h1, .hero p {
+    position: relative;
+    z-index: 2;
 }
 
 .hero h1 {
     font-family: var(--font-pixel);
     font-size: 3.8rem;
     line-height: 1.1;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     color: #FFF;
+    text-shadow: 3px 3px 0px #000;
 }
 
 .hero h1 strong {
@@ -138,13 +164,16 @@ header {
 }
 
 .hero p {
-    font-size: 1.2rem;
-    max-width: 600px;
+    font-size: 1.3rem;
+    max-width: 650px;
     margin: 0 auto;
-    color: #F1F8E9;
-    line-height: 1.5;
+    color: #FFF;
+    line-height: 1.6;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    font-weight: 500;
 }
 
+/* Painel de Escolha de Botões */
 .tabs-container {
     display: flex;
     justify-content: center;
@@ -152,6 +181,8 @@ header {
     margin: 2.5rem auto;
     flex-wrap: wrap;
     max-width: 90%;
+    position: relative;
+    z-index: 10;
 }
 
 .tab-btn {
@@ -175,6 +206,8 @@ header {
     display: flex;
     justify-content: center;
     margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 10;
 }
 
 .back-btn {
@@ -198,6 +231,8 @@ header {
     max-width: 850px;
     margin: 0 auto;
     padding: 0 1rem;
+    position: relative;
+    z-index: 10;
 }
 
 .content-card {
@@ -274,6 +309,8 @@ footer {
     font-size: 1.4rem;
     color: #FFF;
     text-shadow: 1px 1px 0px #000;
+    position: relative;
+    z-index: 10;
 }
 
 @media (max-width: 768px) {
