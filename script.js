@@ -1,24 +1,27 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Seleção dos elementos controladores da tela
+window.onload = function() {
+    
+    // Captura os elementos necessários
     const botoesAcao = document.querySelectorAll('.tab-btn');
     const cardsInformacao = document.querySelectorAll('.content-card');
     const telaInicialHero = document.getElementById('tela-inicial-hero');
     const painelBotoes = document.getElementById('painel-botoes');
     const btnVoltar = document.getElementById('btn-voltar');
 
-    // EVENTO: Quando clica em um botão de ação
+    // Executa as ações para cada botão de tema clicado
     botoesAcao.forEach(botao => {
-        botao.addEventListener('click', (event) => {
-            // 1. Esconde a Introdução (Hero) e também o painel de botões
-            telaInicialHero.classList.add('hidden');
-            painelBotoes.classList.add('hidden');
+        botao.addEventListener('click', function() {
+            // 1. Oculta a tela de introdução e o painel de botões
+            if (telaInicialHero) telaInicialHero.classList.add('hidden');
+            if (painelBotoes) painelBotoes.classList.add('hidden');
+            
+            // 2. Faz o botão voltar aparecer na tela
+            if (btnVoltar) btnVoltar.classList.add('show');
 
-            // 2. Faz surgir o botão mágico de Voltar
-            btnVoltar.classList.add('show');
+            // 3. Garante que nenhum card antigo fique aberto
+            cardsInformacao.forEach(card => card.classList.remove('active'));
 
-            // 3. Abre as informações e imagens correspondentes daquele botão
-            cardsInformacao.forEach(c => c.classList.remove('active'));
-            const alvoId = event.currentTarget.getAttribute('data-target');
+            // 4. Localiza o card correto e exibe na tela
+            const alvoId = this.getAttribute('data-target');
             const cardAlvo = document.getElementById(alvoId);
             if (cardAlvo) {
                 cardAlvo.classList.add('active');
@@ -26,16 +29,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // EVENTO: Quando clica no botão "Voltar para o Início"
-    btnVoltar.addEventListener('click', () => {
-        // 1. Esconde as informações e imagens abertas
-        cardsInformacao.forEach(c => c.classList.remove('active'));
-
-        // 2. Faz o botão de voltar SUMIR da tela
-        btnVoltar.classList.remove('show');
-
-        // 3. Traz de volta a Introdução e o Painel de botões originais
-        telaInicialHero.classList.remove('hidden');
-        painelBotoes.classList.remove('hidden');
-    });
-});
+    // Executa a ação de voltar para o menu principal
+    if (btnVoltar) {
+        btnVoltar.addEventListener('click', function() {
+            // 1. Esconde as caixas de informações abertas
+            cardsInformacao.forEach(card => card.classList.remove('active'));
+            
+            // 2. Esconde o próprio botão de voltar removendo a classe 'show'
+            btnVoltar.classList.remove('show');
+            
+            // 3. Traz de volta os botões principais e a introdução da página
+            if (telaInicialHero) telaInicialHero.classList.remove('hidden');
+            if (painelBotoes) painelBotoes.classList.remove('hidden');
+        });
+    }
+};
