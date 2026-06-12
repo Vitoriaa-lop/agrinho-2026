@@ -1,10 +1,10 @@
-/* --- CONFIGURAÇÕES VISUAIS DO PROJETO --- */
+/* --- CONFIGURAÇÕES VISUAIS ESTILO ESTAÇÃO / FAZENDA --- */
 :root {
-    --bg-outside: #557A46;      /* Verde escuro rústico para o fundo */
+    --bg-outside: #557A46;      /* Verde escuro rústico para o fundo do mapa */
     --menu-bg: #F2EE97;         /* Creme/Amarelado claro para caixas de texto */
-    --menu-border: #7A431D;     /* Castanho de madeira */
-    --text-color: #4A2306;      /* Marrom escuro para leitura */
-    --accent-gold: #FFD700;     
+    --menu-border: #7A431D;     /* Castanho escuro para as bordas de madeira */
+    --text-color: #4A2306;      /* Marrom escuro para excelente leitura */
+    --accent-gold: #FFD700;     /* Ouro para destaques */
     --font-pixel: 'VT323', monospace;
     --font-clean: 'Plus Jakarta Sans', sans-serif;
 }
@@ -27,6 +27,7 @@ body {
     min-height: 100vh;
 }
 
+/* BROTO DESFOCADO NO FUNDO */
 body.fundo-desfocado::before {
     content: "";
     position: fixed;
@@ -42,7 +43,7 @@ body.fundo-desfocado::before {
     z-index: -1;
 }
 
-/* --- TELA DE ENTRADA (SPLASH SCREEN FIXA E ISOLADA) --- */
+/* --- TELA DE ENTRADA (SPLASH SCREEN) --- */
 .splash-screen {
     position: fixed;
     top: 0;
@@ -89,7 +90,7 @@ body.fundo-desfocado::before {
     50% { opacity: 0.3; }
 }
 
-/* --- INTERFACE E ESTRUTURA DO SITE --- */
+/* --- ESTRUTURA DA INTERFACE INTERNA --- */
 header {
     background-color: #8B4F26;
     border: 4px solid #4A2812;
@@ -105,24 +106,40 @@ header {
     font-family: var(--font-pixel);
     font-size: 3rem;
     text-shadow: 3px 3px 0px #000;
+    letter-spacing: 2px;
 }
 
 .logo span { color: var(--accent-gold); }
-.tagline { font-family: var(--font-pixel); font-size: 1.5rem; color: #FFECB3; }
+
+.tagline {
+    font-family: var(--font-pixel);
+    font-size: 1.5rem;
+    color: #FFECB3;
+}
+
 .hidden { display: none !important; }
 
+/* BOAS-VINDAS / HERO */
 .hero {
     text-align: center;
     max-width: 800px;
     margin: 4rem auto 2rem auto;
+    padding: 0 1rem;
     color: #FFF;
     text-shadow: 3px 3px 4px rgba(0, 0, 0, 0.8);
 }
 
-.hero h1 { font-family: var(--font-pixel); font-size: 4rem; margin-bottom: 1.5rem; }
-.hero h1 strong { color: var(--accent-gold); }
-.hero p { font-size: 1.3rem; line-height: 1.6; }
+.hero h1 {
+    font-family: var(--font-pixel);
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+}
 
+.hero h1 strong { color: var(--accent-gold); }
+.hero p { font-size: 1.3rem; line-height: 1.6; font-weight: 500; }
+
+/* ABAS / BOTÕES DE SELECÇÃO */
 .tabs-container {
     display: flex;
     justify-content: center;
@@ -141,10 +158,20 @@ header {
     cursor: pointer;
     font-family: var(--font-pixel);
     font-size: 1.6rem;
+    outline: none;
     transition: transform 0.1s;
 }
 
-.tab-btn:hover { background-color: #E2AC65; transform: translateY(-2px); }
+.tab-btn:hover {
+    background-color: #E2AC65;
+    transform: translateY(-2px);
+}
+
+/* BOTÃO VOLTAR */
+.navigation-container {
+    display: flex;
+    justify-content: center;
+}
 
 .back-btn {
     background-color: #BD3A3A;
@@ -156,12 +183,12 @@ header {
     font-family: var(--font-pixel);
     font-size: 1.4rem;
     display: none;
-    margin: 0 auto 1.5rem auto;
+    margin-bottom: 1.5rem;
 }
 
 .back-btn.show { display: block !important; }
 
-/* --- RECONSTRUÇÃO DOS CARDS --- */
+/* --- CARTÕES DE CONTEÚDO (MOLDURAS DE JOGO) --- */
 .content-section {
     max-width: 850px;
     margin: 0 auto;
@@ -189,37 +216,40 @@ header {
     padding-bottom: 0.5rem;
 }
 
-/* Contentor Protetor da Imagem */
+/* CONTAINER DA IMAGEM (ISOLA O LAYOUT) */
 .image-container {
     width: 100%;
     height: 380px;
-    overflow: hidden;
     border: 4px solid var(--menu-border);
     margin-bottom: 2rem;
     background-color: #000;
+    position: relative;
 }
 
+/* ESTADO NORMAL DA IMAGEM */
 .card-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
     image-rendering: pixelated;
+    position: relative;
+    z-index: 1;
 }
 
-/* --- ANIMAÇÃO SUAVE: ENCOLHE SEM QUEBRAR O LAYOUT --- */
+/* --- ANIMAÇÃO SUAVE: ENCOLHIMENTO DESLIZANTE VIA ZOOM VISUAL --- */
 .animar-imagem {
-    animation: zoomSuaveEfeito 2.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-    transform-origin: center center;
+    z-index: 9999;
+    animation: encolherSuave 3.0s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 
-@keyframes zoomSuaveEfeito {
+@keyframes encolherSuave {
     0% {
-        transform: scale(2.5);
-        filter: brightness(0.7);
+        transform: scale(3.2);
+        filter: brightness(0.8);
     }
-    30% {
-        transform: scale(2.5);
+    25% {
+        transform: scale(3.2);
         filter: brightness(1);
     }
     100% {
@@ -228,20 +258,50 @@ header {
     }
 }
 
-.content-card p { font-size: 1.1rem; margin-bottom: 1.5rem; font-weight: 600; }
+.content-card p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    line-height: 1.4;
+}
 
-.topic-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
-.topic-list li { position: relative; padding-left: 1.8rem; font-size: 1.1rem; }
-.topic-list li::before { content: "▪"; position: absolute; left: 0; top: -2px; color: #BD5300; font-size: 1.6rem; }
+.topic-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
 
-/* --- LINKS DAS REFERÊNCIAS --- */
+.topic-list li {
+    position: relative;
+    padding-left: 1.8rem;
+    font-size: 1.1rem;
+    line-height: 1.4;
+}
+
+.topic-list li::before {
+    content: "▪";
+    position: absolute;
+    left: 0;
+    top: -2px;
+    color: #BD5300;
+    font-size: 1.6rem;
+}
+
+.topic-list li strong { color: #933A00; }
+
+/* --- BLOCO DE LINKS E REFERÊNCIAS --- */
 .fontes-leitura {
     margin-top: 2.5rem;
     padding-top: 1.5rem;
     border-top: 3px dashed rgba(74, 35, 6, 0.2);
 }
 
-.fontes-leitura p { font-size: 1rem !important; color: #5E3216; margin-bottom: 0.5rem !important; }
+.fontes-leitura p {
+    font-size: 1rem !important;
+    color: #5E3216;
+    margin-bottom: 0.5rem !important;
+}
 
 .fontes-leitura a {
     display: inline-block;
@@ -255,17 +315,32 @@ header {
     margin-top: 0.5rem;
     border: 2px solid #4A2306;
     box-shadow: 2px 2px 0px rgba(0,0,0,0.2);
+    transition: background-color 0.2s;
 }
 
 .fontes-leitura a:hover {
-    background-color: #557A46;
-    transform: translateY(-1px);
+    background-color: #557A46; /* Transita para o verde do fundo */
+    color: #FFF;
 }
 
-footer { text-align: center; margin-top: 4rem; font-family: var(--font-pixel); font-size: 1.4rem; color: #FFF; }
+footer {
+    text-align: center;
+    margin-top: 4rem;
+    font-family: var(--font-pixel);
+    font-size: 1.4rem;
+    color: #FFF;
+    text-shadow: 2px 2px 0px #000;
+}
 
+/* RESPONSIVIDADE PARA CRÃS PEQUENOS */
 @media (max-width: 768px) {
     .hero h1 { font-size: 2.5rem; }
     .content-card { padding: 1.5rem; }
     .image-container { height: 220px; }
+    
+    @keyframes encolherSuave {
+        0% { transform: scale(1.8); }
+        25% { transform: scale(1.8); }
+        100% { transform: scale(1); }
+    }
 }
