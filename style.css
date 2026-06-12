@@ -63,46 +63,43 @@ header {
     display: none !important;
 }
 
-/* NOVO DESIGN DA TELA INICIAL (Painel de Introdução Estilo Caixa de Diálogo) */
+/* INTRODUÇÃO DA TELA INICIAL (Limpo direto no fundo verde) */
 .hero {
-    background-color: var(--menu-bg);
-    border: 6px solid var(--menu-border);
-    outline: 2px solid #FDF5E6;
-    outline-offset: -8px;
-    box-shadow: 0 8px 0px rgba(0,0,0,0.15);
     text-align: center;
-    max-width: 850px;
-    margin: 2rem auto;
-    padding: 2.5rem;
+    max-width: 800px;
+    margin: 3rem auto 2rem auto;
+    padding: 0 1rem;
+    color: #FFF;
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.5); /* Sombra para destacar o texto no verde */
 }
 
-/* Correção para o Ícone do Broto de Ouro */
+/* Correção definitiva para o Broto de Ouro */
 .pixel-icon-top {
-    width: 80px;
-    height: 80px;
-    object-fit: contain; /* Impede a imagem de esticar ou distorcer */
-    image-rendering: pixelated; /* Mantém os pixels nítidos estilo videogame */
-    margin-bottom: 1.5rem;
+    width: 70px;
+    height: 70px;
+    object-fit: contain; /* Não deixa a imagem esticar */
+    image-rendering: pixelated; /* Mantém os pixels nítidos */
+    margin: 0 auto 1.5rem auto;
+    display: block;
 }
 
 .hero h1 {
     font-family: var(--font-pixel);
-    font-size: 3.5rem;
+    font-size: 3.8rem;
     line-height: 1.1;
-    margin-bottom: 1.5rem;
-    color: var(--text-color);
+    margin-bottom: 1rem;
+    color: #FFF;
 }
 
 .hero h1 strong {
-    color: #BD5300; /* Um tom de laranja escuro para destacar na caixa amarela */
+    color: var(--accent-gold); /* Destaque dourado no título */
 }
 
 .hero p {
     font-size: 1.2rem;
-    max-width: 650px;
+    max-width: 600px;
     margin: 0 auto;
-    color: var(--text-color);
-    font-weight: 500;
+    color: #F1F8E9;
     line-height: 1.5;
 }
 
@@ -126,7 +123,7 @@ header {
     font-family: var(--font-pixel);
     font-size: 1.6rem;
     outline: none;
-    transition: background-color 0.2s;
+    transition: background-color 0.1s;
 }
 
 .tab-btn:hover {
