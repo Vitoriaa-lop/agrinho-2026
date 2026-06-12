@@ -63,40 +63,50 @@ header {
     display: none !important;
 }
 
+/* NOVO DESIGN DA TELA INICIAL (Painel de Introdução Estilo Caixa de Diálogo) */
 .hero {
+    background-color: var(--menu-bg);
+    border: 6px solid var(--menu-border);
+    outline: 2px solid #FDF5E6;
+    outline-offset: -8px;
+    box-shadow: 0 8px 0px rgba(0,0,0,0.15);
     text-align: center;
-    max-width: 800px;
+    max-width: 850px;
     margin: 2rem auto;
-    padding: 0 1rem;
-    color: #FFF;
-    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.4);
+    padding: 2.5rem;
 }
 
+/* Correção para o Ícone do Broto de Ouro */
 .pixel-icon-top {
-    width: 95px;
-    height: auto;
-    image-rendering: pixelated;
-    margin-bottom: 1rem;
+    width: 80px;
+    height: 80px;
+    object-fit: contain; /* Impede a imagem de esticar ou distorcer */
+    image-rendering: pixelated; /* Mantém os pixels nítidos estilo videogame */
+    margin-bottom: 1.5rem;
 }
 
 .hero h1 {
     font-family: var(--font-pixel);
     font-size: 3.5rem;
     line-height: 1.1;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
 }
 
 .hero h1 strong {
-    color: var(--accent-gold);
+    color: #BD5300; /* Um tom de laranja escuro para destacar na caixa amarela */
 }
 
 .hero p {
-    font-size: 1.1rem;
-    max-width: 600px;
+    font-size: 1.2rem;
+    max-width: 650px;
     margin: 0 auto;
-    color: #F1F8E9;
+    color: var(--text-color);
+    font-weight: 500;
+    line-height: 1.5;
 }
 
+/* Painel de Escolha de Botões */
 .tabs-container {
     display: flex;
     justify-content: center;
@@ -116,6 +126,7 @@ header {
     font-family: var(--font-pixel);
     font-size: 1.6rem;
     outline: none;
+    transition: background-color 0.2s;
 }
 
 .tab-btn:hover {
@@ -138,7 +149,7 @@ header {
     cursor: pointer;
     font-family: var(--font-pixel);
     font-size: 1.4rem;
-    display: none; /* Começa escondido obrigatoriamente */
+    display: none;
 }
 
 /* Exibe o botão de voltar */
@@ -160,7 +171,7 @@ header {
     outline-offset: -8px;
     padding: 2.5rem;
     box-shadow: 0 8px 0px rgba(0,0,0,0.15);
-    display: none; /* ESCONDE COMPLETAMENTE NO INÍCIO */
+    display: none;
 }
 
 /* Exibe apenas o card ativo */
