@@ -1,35 +1,74 @@
-window.onload = function() {
-    const botoesAcao = document.querySelectorAll('.tab-btn');
-    const cardsInformacao = document.querySelectorAll('.content-card');
-    const telaInicialHero = document.getElementById('tela-inicial-hero');
-    const painelBotoes = document.getElementById('painel-botoes');
-    const btnVoltar = document.getElementById('btn-voltar');
+/* --- ESTILO VALE DO AGRO (INSPIRADO NO DESIGN DE FAZENDA) --- */
+:root {
+    --bg-outside: #557A46;      /* Verde escuro rústico para o fundo */
+    --menu-bg: #F2EE97;         /* Creme/Amarelado claro para caixas de texto */
+    --menu-border: #7A431D;     /* Castanho de madeira */
+    --text-color: #4A2306;      /* Marrom escuro para leitura */
+    --accent-gold: #FFD700;     
+    --font-pixel: 'VT323', monospace;
+    --font-clean: 'Plus Jakarta Sans', sans-serif;
+}
 
-    if (!telaInicialHero || !painelBotoes || !btnVoltar) {
-        console.log("Aguardando elementos carregarem...");
-        return;
-    }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    botoesAcao.forEach(botao => {
-        botao.addEventListener('click', function() {
-            if (telaInicialHero) telaInicialHero.classList.add('hidden');
-            if (painelBotoes) painelBotoes.classList.add('hidden');
-            if (btnVoltar) btnVoltar.classList.add('show');
+body {
+    background-color: var(--bg-outside);
+    background-image: linear-gradient(rgba(0,0,0,0.03) 2px, transparent 2px),
+                      linear-gradient(90deg, rgba(0,0,0,0.03) 2px, transparent 2px);
+    background-size: 25px 25px;
+    color: var(--text-color);
+    font-family: var(--font-clean);
+    padding-bottom: 3rem;
+}
 
-            cardsInformacao.forEach(card => card.classList.remove('active'));
+header {
+    background-color: #8B4F26;
+    border: 4px solid #4A2812;
+    box-shadow: inset -4px -4px 0px #5E3216, inset 4px 4px 0px #B56D3A;
+    padding: 1.5rem;
+    margin: 2rem auto;
+    max-width: 90%;
+    text-align: center;
+    color: #FFF;
+}
 
-            const alvoId = this.getAttribute('data-target');
-            const cardAlvo = document.getElementById(alvoId);
-            if (cardAlvo) {
-                cardAlvo.classList.add('active');
-            }
-        });
-    });
+.logo {
+    font-family: var(--font-pixel);
+    font-size: 3rem;
+    letter-spacing: 2px;
+    text-shadow: 3px 3px 0px #000;
+}
 
-    btnVoltar.addEventListener('click', function() {
-        cardsInformacao.forEach(card => card.classList.remove('active'));
-        if (btnVoltar) btnVoltar.classList.remove('show');
-        if (telaInicialHero) telaInicialHero.classList.remove('hidden');
-        if (painelBotoes) painelBotoes.classList.remove('hidden');
-    });
-};
+.logo span {
+    color: var(--accent-gold);
+}
+
+.tagline {
+    font-family: var(--font-pixel);
+    font-size: 1.5rem;
+    color: #FFECB3;
+}
+
+/* Gerenciamento de Telas (Esconder/Mostrar) */
+.hero, .tabs-container {
+    display: block;
+}
+
+.hero.hidden, .tabs-container.hidden {
+    display: none !important;
+}
+
+.hero {
+    text-align: center;
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    color: #FFF;
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.4);
+}
+
+.pixel-icon
