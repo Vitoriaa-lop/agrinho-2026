@@ -26,7 +26,6 @@ window.onload = function() {
 
             document.body.classList.remove('fundo-desfocado');
 
-            // Oculta todos os cards antes de abrir o novo
             cardsInformacao.forEach(card => {
                 card.classList.remove('active');
                 const img = card.querySelector('.card-image');
@@ -40,17 +39,7 @@ window.onload = function() {
                 
                 const imagemAlvo = cardAlvo.querySelector('.card-image');
                 if (imagemAlvo) {
-                    // --- TRUQUE DO MESTRE: Descobre onde está o centro exato da tela atual ---
-                    const coordenadasRetangulo = imagemAlvo.getBoundingClientRect();
-                    const centroXMatematico = (window.innerWidth / 2) - (coordenadasRetangulo.left + coordenadasRetangulo.width / 2);
-                    const centroYMatematico = (window.innerHeight / 2) - (coordenadasRetangulo.top + coordenadasRetangulo.height / 2);
-
-                    // Passa as coordenadas calculadas diretamente para as variáveis do CSS
-                    imagemAlvo.style.setProperty('--x-centro', `${centroXMatematico}px`);
-                    imagemAlvo.style.setProperty('--y-centro', `${centroYMatematico}px`);
-
-                    // Dispara a animação lisa
-                    void imagemAlvo.offsetWidth; 
+                    void imagemAlvo.offsetWidth; // Força reinício limpo da animação
                     imagemAlvo.classList.add('animar-imagem');
                 }
             }
