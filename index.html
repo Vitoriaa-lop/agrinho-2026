@@ -13,18 +13,24 @@
 </head>
 <body>
 
-    <header>
+    <div id="tela-entrada" class="splash-screen">
+        <div class="splash-content">
+            <img src="img/broto_de_ouro.png" alt="Broto de Ouro" class="logo-gigante">
+            <p class="piscar-texto">✨ Clique no Broto de Ouro para Entrar ✨</p>
+        </div>
+    </div>
+
+    <header id="cabecalho-principal" class="hidden">
         <div class="logo">✨ AGRO<span>VALE</span></div>
         <div class="tagline">Missão Agrinho 2026</div>
     </header>
 
-    <section class="hero" id="tela-inicial-hero">
-        <img src="img/broto_de_ouro.png" alt="Broto de Ouro" class="pixel-icon-top">
+    <section class="hero hidden" id="tela-inicial-hero">
         <h1>Tecnologia no Campo: <br><strong>A Nova Estação</strong></h1>
         <p>Use as melhores ferramentas e estratégias para cuidar da sua terra, economizar recursos e colher um futuro sustentável.</p>
     </section>
 
-    <div class="tabs-container" id="painel-botoes">
+    <div class="tabs-container hidden" id="painel-botoes">
         <button class="tab-btn" data-target="tecnologia">🛸 Agricultura de Precisão</button>
         <button class="tab-btn" data-target="sistemas">🌳 Sistemas Integrados</button>
         <button class="tab-btn" data-target="manejo">💧 Manejo e Conservação</button>
@@ -39,7 +45,7 @@
 
         <div id="tecnologia" class="content-card">
             <h2>Tecnologia e Agricultura de Precisão</h2>
-            <img src="img/agricultura_precisao.png" alt="Agricultura de Precisão" class="card-image">
+            <img src="img/agricultura_precisao.png" alt="Agriculture de Precisão" class="card-image">
             <p>Otimize o uso de água e insumos usando maquinários inteligentes e sensores de última geração.</p>
             <ul class="topic-list">
                 <li><strong>Drones Avançados:</strong> Escaneiam a plantação em busca de pragas antes que elas se espalhem.</li>
@@ -53,7 +59,7 @@
             <img src="img/sistemas_integrados.png" alt="Sistemas Integrados" class="card-image">
             <p>Combine lavoura, pecuária e floresta para criar uma fazenda rica, equilibrada e livre de desperdícios.</p>
             <ul class="topic-list">
-                <li><strong>Modelo ILPF:</strong> Plantações, animals e árvores convivendo no mesmo espaço em perfeita harmonia.</li>
+                <li><strong>Modelo ILPF:</strong> Plantações, animais e árvores convivendo no mesmo espaço em perfeita harmonia.</li>
                 <li><strong>Solo Fértil:</strong> A rotação natural recupera os nutrientes da terra sem precisar de químicos pesados.</li>
                 <li><strong>Ar Puro:</strong> As árvores plantadas ajudam a capturar os gases de efeito estufa.</li>
             </ul>

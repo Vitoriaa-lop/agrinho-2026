@@ -1,26 +1,43 @@
 window.onload = function() {
     
-    // Captura os elementos necessários
+    // Captura os elementos da Splash Screen e do Cabeçalho
+    const telaEntrada = document.getElementById('tela-entrada');
+    const cabecalhoPrincipal = document.getElementById('cabecalho-principal');
+    
+    // Captura os elementos das telas principais do site
     const botoesAcao = document.querySelectorAll('.tab-btn');
     const cardsInformacao = document.querySelectorAll('.content-card');
     const telaInicialHero = document.getElementById('tela-inicial-hero');
     const painelBotoes = document.getElementById('painel-botoes');
     const btnVoltar = document.getElementById('btn-voltar');
 
-    // Executa as ações para cada botão de tema clicado
+    // 1. EVENTO: Clicar no Broto de Ouro gigante para entrar no site
+    if (telaEntrada) {
+        telaEntrada.addEventListener('click', function() {
+            // Adiciona a classe hidden para sumir com a splash screen
+            telaEntrada.classList.add('hidden');
+            
+            // Remove a classe hidden para revelar o site principal
+            if (cabecalhoPrincipal) cabecalhoPrincipal.classList.remove('hidden');
+            if (telaInicialHero) telaInicialHero.classList.remove('hidden');
+            if (painelBotoes) painelBotoes.classList.remove('hidden');
+        });
+    }
+
+    // 2. EVENTO: Ao clicar em qualquer um dos 4 botões do menu principal
     botoesAcao.forEach(botao => {
         botao.addEventListener('click', function() {
-            // 1. Oculta a tela de introdução e o painel de botões
+            // Oculta a introdução e o painel de botões principal
             if (telaInicialHero) telaInicialHero.classList.add('hidden');
             if (painelBotoes) painelBotoes.classList.add('hidden');
             
-            // 2. Faz o botão voltar aparecer na tela
+            // Exibe o botão de voltar na tela
             if (btnVoltar) btnVoltar.classList.add('show');
 
-            // 3. Garante que nenhum card antigo fique aberto
+            // Limpa qualquer card aberto anteriormente
             cardsInformacao.forEach(card => card.classList.remove('active'));
 
-            // 4. Localiza o card correto e exibe na tela
+            // Exibe o card correspondente ao botão clicado
             const alvoId = this.getAttribute('data-target');
             const cardAlvo = document.getElementById(alvoId);
             if (cardAlvo) {
@@ -29,16 +46,16 @@ window.onload = function() {
         });
     });
 
-    // Executa a ação de voltar para o menu principal
+    // 3. EVENTO: Ao clicar no botão "Voltar para o Início"
     if (btnVoltar) {
         btnVoltar.addEventListener('click', function() {
-            // 1. Esconde as caixas de informações abertas
+            // Fecha as caixas de informações abertas
             cardsInformacao.forEach(card => card.classList.remove('active'));
             
-            // 2. Esconde o próprio botão de voltar removendo a classe 'show'
+            // Remove o botão de voltar da tela
             btnVoltar.classList.remove('show');
             
-            // 3. Traz de volta os botões principais e a introdução da página
+            // Exibe a tela principal com a introdução e os botões de menu novamente
             if (telaInicialHero) telaInicialHero.classList.remove('hidden');
             if (painelBotoes) painelBotoes.classList.remove('hidden');
         });
