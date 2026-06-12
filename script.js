@@ -1,24 +1,22 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Seleção dos elementos da página
+    // Seleção dos elementos controladores da tela
     const botoesAcao = document.querySelectorAll('.tab-btn');
     const cardsInformacao = document.querySelectorAll('.content-card');
     const telaInicialHero = document.getElementById('tela-inicial-hero');
+    const painelBotoes = document.getElementById('painel-botoes');
     const btnVoltar = document.getElementById('btn-voltar');
 
-    // FUNÇÃO: Quando clica em um botão de ação
+    // EVENTO: Quando clica em um botão de ação
     botoesAcao.forEach(botao => {
         botao.addEventListener('click', (event) => {
-            // 1. Remove o estado ativo de outros botões e adiciona neste
-            botoesAcao.forEach(b => b.classList.remove('active'));
-            event.currentTarget.classList.add('active');
-            
-            // 2. Some com a tela de introdução inicial
+            // 1. Esconde a Introdução (Hero) e também o painel de botões
             telaInicialHero.classList.add('hidden');
+            painelBotoes.classList.add('hidden');
 
-            // 3. Mostra o botão de Voltar
+            // 2. Faz surgir o botão mágico de Voltar
             btnVoltar.classList.add('show');
 
-            // 4. Esconde os cards anteriores e abre o card correspondente
+            // 3. Abre as informações e imagens correspondentes daquele botão
             cardsInformacao.forEach(c => c.classList.remove('active'));
             const alvoId = event.currentTarget.getAttribute('data-target');
             const cardAlvo = document.getElementById(alvoId);
@@ -28,18 +26,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // FUNÇÃO: Quando clica no botão "Voltar para o Início"
+    // EVENTO: Quando clica no botão "Voltar para o Início"
     btnVoltar.addEventListener('click', () => {
-        // 1. Remove o destaque verde dos botões de ação
-        botoesAcao.forEach(b => b.classList.remove('active'));
-
-        // 2. Esconde o bloco de informações que estava aberto
+        // 1. Esconde as informações e imagens abertas
         cardsInformacao.forEach(c => c.classList.remove('active'));
 
-        // 3. Faz o botão de voltar SUMIR novamente
+        // 2. Faz o botão de voltar SUMIR da tela
         btnVoltar.classList.remove('show');
 
-        // 4. Faz a introdução do início APARECER de volta
+        // 3. Traz de volta a Introdução e o Painel de botões originais
         telaInicialHero.classList.remove('hidden');
+        painelBotoes.classList.remove('hidden');
     });
 });
