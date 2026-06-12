@@ -1,71 +1,76 @@
 window.onload = function() {
     
-    // Captura os elementos da Splash Screen e do Cabeçalho
     const telaEntrada = document.getElementById('tela-entrada');
     const cabecalhoPrincipal = document.getElementById('cabecalho-principal');
-    
-    // Captura os elementos das telas principais do site
     const botoesAcao = document.querySelectorAll('.tab-btn');
     const cardsInformacao = document.querySelectorAll('.content-card');
     const telaInicialHero = document.getElementById('tela-inicial-hero');
     const painelBotoes = document.getElementById('painel-botoes');
     const btnVoltar = document.getElementById('btn-voltar');
 
-    // 1. EVENTO: Clicar na Splash Screen ativa o fundo desfocado na tela inicial
+    // Mantém o controle dos cronômetros ativos para evitar bugs se clicar rápido
+    let timersAnimacao = [];
+
     if (telaEntrada) {
         telaEntrada.addEventListener('click', function() {
             telaEntrada.classList.add('hidden');
-            
-            // Adiciona o broto desfocado no fundo do site
             document.body.classList.add('fundo-desfocado');
-            
             if (cabecalhoPrincipal) cabecalhoPrincipal.classList.remove('hidden');
             if (telaInicialHero) telaInicialHero.classList.remove('hidden');
             if (painelBotoes) painelBotoes.classList.remove('hidden');
         });
     }
 
-    // 2. EVENTO: Ao clicar em um botão de conteúdo, remove o desfoque e roda a animação de zoom da imagem
     botoesAcao.forEach(botao => {
         botao.addEventListener('click', function() {
             if (telaInicialHero) telaInicialHero.classList.add('hidden');
             if (painelBotoes) painelBotoes.classList.add('hidden');
             if (btnVoltar) btnVoltar.classList.add('show');
 
-            // Remove o desfoque do fundo da página
             document.body.classList.remove('fundo-desfocado');
 
-            // Desativa todos os cards e limpa animações anteriores das imagens
+            // Limpa qualquer temporizador pendente
+            timersAnimacao.forEach(t => clearTimeout(t));
+            timersAnimacao = [];
+
+            // Reseta o estado de todos os cards e imagens
             cardsInformacao.forEach(card => {
                 card.classList.remove('active');
                 const img = card.querySelector('.card-image');
-                if (img) img.classList.remove('animar-imagem');
+                if (img) {
+                    img.classList.remove('animar-imagem', 'imagem-fixada');
+                }
             });
 
-            // Ativa o card alvo do clique
             const alvoId = this.getAttribute('data-target');
             const cardAlvo = document.getElementById(alvoId);
             if (cardAlvo) {
                 cardAlvo.classList.add('active');
                 
-                // Dispara a animação cinematográfica na imagem interna daquele bloco
                 const imagemAlvo = cardAlvo.querySelector('.card-image');
                 if (imagemAlvo) {
-                    // Força o navegador a reiniciar a leitura da animação
-                    void imagemAlvo.offsetWidth; 
+                    void imagemAlvo.offsetWidth; // Força reinício limpo do CSS
                     imagemAlvo.classList.add('animar-imagem');
+
+                    // EXATAMENTE após 3 segundos (tempo do CSS), fixa a imagem no lugar naturalmente
+                    const timer = setTimeout(() => {
+                        imagemAlvo.classList.remove('animar-imagem');
+                        imagemAlvo.classList.add('imagem-fixada');
+                    }, 3000);
+                    timersAnimacao.push(timer);
                 }
             }
         });
     });
 
-    // 3. EVENTO: Ao clicar em "Voltar", reativa o broto desfocado no fundo
     if (btnVoltar) {
         btnVoltar.addEventListener('click', function() {
+            timersAnimacao.forEach(t => clearTimeout(t));
+            
             cardsInformacao.forEach(card => {
                 card.classList.remove('active');
                 const img = card.querySelector('.card-image');
-                if (img) img.classList.remove('animar-imagem');
+                if (img) img.classList.remove('animar-imagem', 'imagem-fixada');
             });
             
             btnVoltar.classList.remove('show');
