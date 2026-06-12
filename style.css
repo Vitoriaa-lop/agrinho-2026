@@ -226,7 +226,7 @@ header {
     padding: 2.5rem;
     box-shadow: 0 12px 24px rgba(0,0,0,0.3);
     display: none;
-    overflow: hidden; /* Evita que a imagem vaze para fora do card durante a animação gigante */
+    /* Removemos o overflow:hidden para permitir que a animação flutue fora do card no início */
 }
 
 .content-card.active {
@@ -242,9 +242,11 @@ header {
     padding-bottom: 0.5rem;
 }
 
+/* Estrutura base da imagem (como ela fica estática depois que o efeito acaba) */
 .card-image {
     width: 100%;
     max-height: 380px;
+    height: 380px;
     object-fit: cover;
     border: 4px solid var(--menu-border);
     margin-bottom: 2rem;
@@ -252,28 +254,57 @@ header {
     image-rendering: pixelated;
 }
 
-/* --- NOVA ANIMAÇÃO: ENCOLHIMENTO SUAVE E LENTO DO CENTRO PARA O RETÂNGULO --- */
+/* --- SUPER ANIMAÇÃO: TELA CHEIA ABSOLUTA ENCOLHENDO PARA O RETÂNGULO --- */
 .animar-imagem {
-    /* 3 segundos de duração com transição ultra suave */
-    animation: encolherParaRetangulo 3.0s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-    transform-origin: center center; /* Garante que diminui perfeitamente a partir do meio */
+    /* 3.2 segundos para ser bem visível, lento e suave */
+    animation: zoomTelaCheiaParaCard 3.2s cubic-bezier(0.25, 1, 0.3, 1) forwards;
 }
 
-@keyframes encolherParaRetangulo {
+@keyframes zoomTelaCheiaParaCard {
     0% {
-        /* Nasce gigante ocupando o espaço total da janela do navegador */
-        transform: scale(4.5); 
-        filter: brightness(0.8);
+        /* Desprende a imagem do layout e joga ela em tela cheia absoluta */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        max-height: 100vh;
+        margin: 0;
+        z-index: 99999; /* Fica por cima de absolutamente tudo do site */
+        border: none;
+        box-shadow: none;
+        transform: scale(1);
     }
-    /* Pausa dramática opcional em tela cheia (primeiros 15% do tempo) */
-    15% {
-        transform: scale(4.5);
-        filter: brightness(1);
+    /* Segura ela travada cobrindo a tela inteira por 1 segundo (30% do tempo) */
+    30% {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        max-height: 100vh;
+        margin: 0;
+        z-index: 99999;
+        border: none;
+        box-shadow: none;
+        transform: scale(1);
+    }
+    /* Começa a transição suave mudando para o tamanho do retângulo final */
+    99% {
+        z-index: 99999;
     }
     100% {
-        /* Retorna suavemente ao tamanho original dentro das bordas do card */
+        /* Volta perfeitamente para a posição original dentro do seu card amarelo */
+        position: relative;
+        top: auto;
+        left: auto;
+        width: 100%;
+        height: 380px;
+        max-height: 380px;
+        margin-bottom: 2rem;
+        border: 4px solid var(--menu-border);
+        z-index: 1;
         transform: scale(1);
-        filter: brightness(1);
     }
 }
 
@@ -323,8 +354,17 @@ footer {
 @media (max-width: 768px) {
     .hero h1 { font-size: 2.5rem; }
     .content-card { padding: 1.5rem; }
-    @keyframes encolherParaRetangulo {
-        0% { transform: scale(2.5); } /* Escala menor no celular para evitar bugs */
-        100% { transform: scale(1); }
+    
+    /* Versão mobile da animação para não quebrar em telas touch pequenas */
+    @keyframes zoomTelaCheiaParaCard {
+        0% {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; max-height: 100vh; margin: 0; z-index: 99999; border: none;
+        }
+        30% {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; max-height: 100vh; margin: 0; z-index: 99999; border: none;
+        }
+        100% {
+            position: relative; top: auto; left: auto; width: 100%; height: 220px; max-height: 220px; margin-bottom: 2rem; border: 4px solid var(--menu-border); z-index: 1;
+        }
     }
 }
