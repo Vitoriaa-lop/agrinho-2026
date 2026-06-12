@@ -251,9 +251,9 @@ header {
     image-rendering: pixelated;
 }
 
-/* --- NOVA ANIMAÇÃO DE ENTRADA DA IMAGEM (TELA CHEIA PARA DENTRO) --- */
+/* --- ANIMAÇÃO CALIBRADA PARA SER MAIS LENTA E SUAVE (1.5 SEGUNDOS) --- */
 .animar-imagem {
-    animation: zoomEntrada 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: zoomEntrada 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
     transform-origin: center center;
     position: relative;
     z-index: 50;
@@ -271,7 +271,8 @@ header {
         object-fit: cover;
         border: none;
     }
-    40% {
+    /* Mantém a imagem estática na tela cheia por um breve momento */
+    30% {
         position: fixed;
         top: 0;
         left: 0;
@@ -282,6 +283,7 @@ header {
         object-fit: cover;
         border: none;
     }
+    /* Encolhe suavemente até o tamanho final desejado */
     100% {
         position: relative;
         width: 100%;
