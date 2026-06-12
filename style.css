@@ -58,7 +58,8 @@ header {
     display: block;
 }
 
-.hero.hidden, .tabs-container.hidden {
+/* Classe para sumir com os elementos */
+.hidden {
     display: none !important;
 }
 
@@ -71,4 +72,165 @@ header {
     text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.4);
 }
 
-.pixel-icon
+.pixel-icon-top {
+    width: 95px;
+    height: auto;
+    image-rendering: pixelated;
+    margin-bottom: 1rem;
+}
+
+.hero h1 {
+    font-family: var(--font-pixel);
+    font-size: 3.5rem;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+}
+
+.hero h1 strong {
+    color: var(--accent-gold);
+}
+
+.hero p {
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+    color: #F1F8E9;
+}
+
+.tabs-container {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin: 2.5rem auto;
+    flex-wrap: wrap;
+    max-width: 90%;
+}
+
+.tab-btn {
+    background-color: #D29A53;
+    color: #FFF;
+    border: 4px solid var(--menu-border);
+    box-shadow: inset -4px -4px 0px #94632D, inset 4px 4px 0px #F5C285, 0 4px 0px rgba(0,0,0,0.2);
+    padding: 0.8rem 1.5rem;
+    cursor: pointer;
+    font-family: var(--font-pixel);
+    font-size: 1.6rem;
+    outline: none;
+}
+
+.tab-btn:hover {
+    background-color: #E2AC65;
+}
+
+/* Botão Voltar */
+.navigation-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.back-btn {
+    background-color: #BD3A3A;
+    color: #FFF;
+    border: 4px solid var(--menu-border);
+    box-shadow: inset -4px -4px 0px #7D2626, inset 4px 4px 0px #F58585, 0 4px 0px rgba(0,0,0,0.2);
+    padding: 0.6rem 1.2rem;
+    cursor: pointer;
+    font-family: var(--font-pixel);
+    font-size: 1.4rem;
+    display: none; /* Começa escondido obrigatoriamente */
+}
+
+/* Exibe o botão de voltar */
+.back-btn.show {
+    display: block !important;
+}
+
+/* Área de Conteúdo (Cards de Informação) */
+.content-section {
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.content-card {
+    background-color: var(--menu-bg);
+    border: 6px solid var(--menu-border);
+    outline: 2px solid #FDF5E6;
+    outline-offset: -8px;
+    padding: 2.5rem;
+    box-shadow: 0 8px 0px rgba(0,0,0,0.15);
+    display: none; /* ESCONDE COMPLETAMENTE NO INÍCIO */
+}
+
+/* Exibe apenas o card ativo */
+.content-card.active {
+    display: block !important;
+}
+
+.content-card h2 {
+    font-family: var(--font-pixel);
+    font-size: 2.8rem;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+    border-bottom: 4px dashed rgba(74, 35, 6, 0.15);
+    padding-bottom: 0.5rem;
+}
+
+.card-image {
+    width: 100%;
+    max-height: 380px;
+    object-fit: cover;
+    border: 4px solid var(--menu-border);
+    margin-bottom: 2rem;
+    display: block;
+    image-rendering: pixelated;
+}
+
+.content-card p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.topic-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.topic-list li {
+    position: relative;
+    padding-left: 1.8rem;
+    font-size: 1.1rem;
+    line-height: 1.4;
+}
+
+.topic-list li::before {
+    content: "▪";
+    position: absolute;
+    left: 0;
+    top: -2px;
+    color: #BD5300;
+    font-size: 1.6rem;
+}
+
+.topic-list li strong {
+    color: #933A00;
+}
+
+footer {
+    text-align: center;
+    margin-top: 4rem;
+    font-family: var(--font-pixel);
+    font-size: 1.4rem;
+    color: #FFF;
+    text-shadow: 1px 1px 0px #000;
+}
+
+@media (max-width: 768px) {
+    .hero h1 { font-size: 2.3rem; }
+    .content-card { padding: 1.5rem; }
+}
