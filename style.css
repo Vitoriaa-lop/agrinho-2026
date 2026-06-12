@@ -1,5 +1,6 @@
 /* --- ESTILO VALE DO AGRO (INSPIRADO NO DESIGN DE FAZENDA) --- */
 :root {
+    --bg-outside: #557A46;      /* Verde escuro rústico para o fundo */
     --menu-bg: #F2EE97;         /* Creme/Amarelado claro para caixas de texto */
     --menu-border: #7A431D;     /* Castanho de madeira */
     --text-color: #4A2306;      /* Marrom escuro para leitura */
@@ -15,18 +16,22 @@
 }
 
 body {
-    background-color: #000; /* Fundo de segurança preto caso a imagem demore a carregar */
+    background-color: var(--bg-outside);
+    background-image: linear-gradient(rgba(0,0,0,0.03) 2px, transparent 2px),
+                      linear-gradient(90deg, rgba(0,0,0,0.03) 2px, transparent 2px);
+    background-size: 25px 25px;
     color: var(--text-color);
     font-family: var(--font-clean);
     padding-bottom: 3rem;
     overflow-x: hidden;
     min-height: 100vh;
+    transition: background 0.3s ease;
 }
 
-/* --- EFEITO DO BROTO DE OURO DESFOCADO NO FUNDO DA PÁGINA TODA --- */
-body::before {
+/* --- ATIVA O BROTO DESFOCADO APENAS QUANDO A CLASSE ESTIVER ATIVA --- */
+body.fundo-desfocado::before {
     content: "";
-    position: fixed; /* Mantém o fundo fixo mesmo se rolar a página */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
@@ -34,9 +39,9 @@ body::before {
     background-image: url('img/broto_de_ouro.png');
     background-size: cover;
     background-position: center;
-    filter: blur(10px) brightness(0.4); /* Deixa o broto desfocado e mais escuro para o texto brilhar */
-    transform: scale(1.05); /* Evita bordas brancas causadas pelo desfoque */
-    z-index: -1; /* Garante que fica atrás de absolutamente tudo */
+    filter: blur(10px) brightness(0.4); /* Efeito de desfoque escurecido */
+    transform: scale(1.05);
+    z-index: -1; /* Fica atrás de tudo */
 }
 
 /* --- TELA DE ENTRADA (SPLASH SCREEN EM TELA CHEIA) --- */
@@ -126,14 +131,14 @@ header {
     display: none !important;
 }
 
-/* INTRODUÇÃO DA TELA INICIAL (Sem tabela, flutuando no fundo) */
+/* INTRODUÇÃO DA TELA INICIAL */
 .hero {
     text-align: center;
     max-width: 800px;
     margin: 4rem auto 2rem auto;
     padding: 0 1rem;
     color: #FFF;
-    text-shadow: 3px 3px 4px rgba(0, 0, 0, 0.8); /* Sombra reforçada para excelente leitura */
+    text-shadow: 3px 3px 4px rgba(0, 0, 0, 0.8);
 }
 
 .hero h1 {
