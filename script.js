@@ -25,22 +25,36 @@ window.onload = function() {
         });
     }
 
-    // 2. EVENTO: Ao clicar em um botão de conteúdo, remove o desfoque para ver o card no verde
+    // 2. EVENTO: Ao clicar em um botão de conteúdo, remove o desfoque e roda a animação de zoom da imagem
     botoesAcao.forEach(botao => {
         botao.addEventListener('click', function() {
             if (telaInicialHero) telaInicialHero.classList.add('hidden');
             if (painelBotoes) painelBotoes.classList.add('hidden');
             if (btnVoltar) btnVoltar.classList.add('show');
 
-            // REMOVE o desfoque para deixar o fundo verde padrão nos cards
+            // Remove o desfoque do fundo da página
             document.body.classList.remove('fundo-desfocado');
 
-            cardsInformacao.forEach(card => card.classList.remove('active'));
+            // Desativa todos os cards e limpa animações anteriores das imagens
+            cardsInformacao.forEach(card => {
+                card.classList.remove('active');
+                const img = card.querySelector('.card-image');
+                if (img) img.classList.remove('animar-imagem');
+            });
 
+            // Ativa o card alvo do clique
             const alvoId = this.getAttribute('data-target');
             const cardAlvo = document.getElementById(alvoId);
             if (cardAlvo) {
                 cardAlvo.classList.add('active');
+                
+                // Dispara a animação cinematográfica na imagem interna daquele bloco
+                const imagemAlvo = cardAlvo.querySelector('.card-image');
+                if (imagemAlvo) {
+                    // Força o navegador a reiniciar a leitura da animação
+                    void imagemAlvo.offsetWidth; 
+                    imagemAlvo.classList.add('animar-imagem');
+                }
             }
         });
     });
@@ -48,10 +62,13 @@ window.onload = function() {
     // 3. EVENTO: Ao clicar em "Voltar", reativa o broto desfocado no fundo
     if (btnVoltar) {
         btnVoltar.addEventListener('click', function() {
-            cardsInformacao.forEach(card => card.classList.remove('active'));
-            btnVoltar.classList.remove('show');
+            cardsInformacao.forEach(card => {
+                card.classList.remove('active');
+                const img = card.querySelector('.card-image');
+                if (img) img.classList.remove('animar-imagem');
+            });
             
-            // ADICIONA de volta o desfoque porque voltamos para a tela inicial
+            btnVoltar.classList.remove('show');
             document.body.classList.add('fundo-desfocado');
             
             if (telaInicialHero) telaInicialHero.classList.remove('hidden');
