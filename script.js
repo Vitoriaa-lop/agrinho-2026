@@ -8,9 +8,6 @@ window.onload = function() {
     const painelBotoes = document.getElementById('painel-botoes');
     const btnVoltar = document.getElementById('btn-voltar');
 
-    // Mantém o controle dos cronômetros ativos para evitar bugs se clicar rápido
-    let timersAnimacao = [];
-
     if (telaEntrada) {
         telaEntrada.addEventListener('click', function() {
             telaEntrada.classList.add('hidden');
@@ -29,17 +26,11 @@ window.onload = function() {
 
             document.body.classList.remove('fundo-desfocado');
 
-            // Limpa qualquer temporizador pendente
-            timersAnimacao.forEach(t => clearTimeout(t));
-            timersAnimacao = [];
-
-            // Reseta o estado de todos os cards e imagens
+            // Oculta todos os cards antes de abrir o novo
             cardsInformacao.forEach(card => {
                 card.classList.remove('active');
                 const img = card.querySelector('.card-image');
-                if (img) {
-                    img.classList.remove('animar-imagem', 'imagem-fixada');
-                }
+                if (img) img.classList.remove('animar-imagem');
             });
 
             const alvoId = this.getAttribute('data-target');
@@ -49,15 +40,18 @@ window.onload = function() {
                 
                 const imagemAlvo = cardAlvo.querySelector('.card-image');
                 if (imagemAlvo) {
-                    void imagemAlvo.offsetWidth; // Força reinício limpo do CSS
-                    imagemAlvo.classList.add('animar-imagem');
+                    // --- TRUQUE DO MESTRE: Descobre onde está o centro exato da tela atual ---
+                    const coordenadasRetangulo = imagemAlvo.getBoundingClientRect();
+                    const centroXMatematico = (window.innerWidth / 2) - (coordenadasRetangulo.left + coordenadasRetangulo.width / 2);
+                    const centroYMatematico = (window.innerHeight / 2) - (coordenadasRetangulo.top + coordenadasRetangulo.height / 2);
 
-                    // EXATAMENTE após 3 segundos (tempo do CSS), fixa a imagem no lugar naturalmente
-                    const timer = setTimeout(() => {
-                        imagemAlvo.classList.remove('animar-imagem');
-                        imagemAlvo.classList.add('imagem-fixada');
-                    }, 3000);
-                    timersAnimacao.push(timer);
+                    // Passa as coordenadas calculadas diretamente para as variáveis do CSS
+                    imagemAlvo.style.setProperty('--x-centro', `${centroXMatematico}px`);
+                    imagemAlvo.style.setProperty('--y-centro', `${centroYMatematico}px`);
+
+                    // Dispara a animação lisa
+                    void imagemAlvo.offsetWidth; 
+                    imagemAlvo.classList.add('animar-imagem');
                 }
             }
         });
@@ -65,12 +59,10 @@ window.onload = function() {
 
     if (btnVoltar) {
         btnVoltar.addEventListener('click', function() {
-            timersAnimacao.forEach(t => clearTimeout(t));
-            
             cardsInformacao.forEach(card => {
                 card.classList.remove('active');
                 const img = card.querySelector('.card-image');
-                if (img) img.classList.remove('animar-imagem', 'imagem-fixada');
+                if (img) img.classList.remove('animar-imagem');
             });
             
             btnVoltar.classList.remove('show');
