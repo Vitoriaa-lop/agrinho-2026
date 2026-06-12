@@ -188,7 +188,7 @@ header {
 
 .back-btn.show { display: block !important; }
 
-/* --- CARTÕES DE CONTEÚDO (MOLDURAS DE JOGO) --- */
+/* --- CARTÕES DE CONTEÚDO --- */
 .content-section {
     max-width: 850px;
     margin: 0 auto;
@@ -216,7 +216,7 @@ header {
     padding-bottom: 0.5rem;
 }
 
-/* CONTAINER DA IMAGEM (ISOLA O LAYOUT) */
+/* CONTAINER DA IMAGEM */
 .image-container {
     width: 100%;
     height: 380px;
@@ -226,7 +226,6 @@ header {
     position: relative;
 }
 
-/* ESTADO NORMAL DA IMAGEM */
 .card-image {
     width: 100%;
     height: 100%;
@@ -237,7 +236,7 @@ header {
     z-index: 1;
 }
 
-/* --- ANIMAÇÃO SUAVE: ENCOLHIMENTO DESLIZANTE VIA ZOOM VISUAL --- */
+/* --- ANIMAÇÃO 1: DE FORA PARA DENTRO (ABRIR CARD) --- */
 .animar-imagem {
     z-index: 9999;
     animation: encolherSuave 3.0s cubic-bezier(0.25, 1, 0.5, 1) forwards;
@@ -255,6 +254,26 @@ header {
     100% {
         transform: scale(1);
         filter: brightness(1);
+    }
+}
+
+/* --- ANIMAÇÃO 2: DE DENTRO PARA FORA (BOTÃO VOLTAR) --- */
+.reverter-imagem {
+    z-index: 9999;
+    /* Animação rápida de 0.5s para transição agressiva de saída */
+    animation: crescerEsumir 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) forwards;
+}
+
+@keyframes crescerEsumir {
+    0% {
+        transform: scale(1);
+        filter: brightness(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(3.2);
+        filter: brightness(0.6);
+        opacity: 0;
     }
 }
 
@@ -319,7 +338,7 @@ header {
 }
 
 .fontes-leitura a:hover {
-    background-color: #557A46; /* Transita para o verde do fundo */
+    background-color: #557A46;
     color: #FFF;
 }
 
@@ -332,7 +351,7 @@ footer {
     text-shadow: 2px 2px 0px #000;
 }
 
-/* RESPONSIVIDADE PARA CRÃS PEQUENOS */
+/* RESPONSIVIDADE */
 @media (max-width: 768px) {
     .hero h1 { font-size: 2.5rem; }
     .content-card { padding: 1.5rem; }
@@ -342,5 +361,9 @@ footer {
         0% { transform: scale(1.8); }
         25% { transform: scale(1.8); }
         100% { transform: scale(1); }
+    }
+    @keyframes crescerEsumir {
+        0% { transform: scale(1); opacity: 1; }
+        100% { transform: scale(1.8); opacity: 0; }
     }
 }
