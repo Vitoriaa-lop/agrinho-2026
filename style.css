@@ -1,6 +1,5 @@
 /* --- ESTILO VALE DO AGRO (INSPIRADO NO DESIGN DE FAZENDA) --- */
 :root {
-    --bg-outside: #557A46;      /* Verde escuro rústico para o fundo */
     --menu-bg: #F2EE97;         /* Creme/Amarelado claro para caixas de texto */
     --menu-border: #7A431D;     /* Castanho de madeira */
     --text-color: #4A2306;      /* Marrom escuro para leitura */
@@ -16,14 +15,28 @@
 }
 
 body {
-    background-color: var(--bg-outside);
-    background-image: linear-gradient(rgba(0,0,0,0.03) 2px, transparent 2px),
-                      linear-gradient(90deg, rgba(0,0,0,0.03) 2px, transparent 2px);
-    background-size: 25px 25px;
+    background-color: #000; /* Fundo de segurança preto caso a imagem demore a carregar */
     color: var(--text-color);
     font-family: var(--font-clean);
     padding-bottom: 3rem;
     overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* --- EFEITO DO BROTO DE OURO DESFOCADO NO FUNDO DA PÁGINA TODA --- */
+body::before {
+    content: "";
+    position: fixed; /* Mantém o fundo fixo mesmo se rolar a página */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('img/broto_de_ouro.png');
+    background-size: cover;
+    background-position: center;
+    filter: blur(10px) brightness(0.4); /* Deixa o broto desfocado e mais escuro para o texto brilhar */
+    transform: scale(1.05); /* Evita bordas brancas causadas pelo desfoque */
+    z-index: -1; /* Garante que fica atrás de absolutamente tudo */
 }
 
 /* --- TELA DE ENTRADA (SPLASH SCREEN EM TELA CHEIA) --- */
@@ -89,8 +102,6 @@ header {
     max-width: 90%;
     text-align: center;
     color: #FFF;
-    position: relative;
-    z-index: 10; /* Fica acima do fundo */
 }
 
 .logo {
@@ -115,48 +126,22 @@ header {
     display: none !important;
 }
 
-/* --- TELA INICIAL COM O BROTO DE OURO DESFOCADO NO FUNDO --- */
+/* INTRODUÇÃO DA TELA INICIAL (Sem tabela, flutuando no fundo) */
 .hero {
     text-align: center;
-    max-width: 850px;
-    margin: 3rem auto 2rem auto;
-    padding: 3rem 2rem;
-    position: relative;
-    border-radius: 12px;
-    overflow: hidden;
-    border: 4px solid var(--menu-border);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
-}
-
-/* Cria o efeito do fundo desfocado sem afetar o texto */
-.hero::before {
-    content: "";
-    position: absolute;
-    top: 0; 
-    left: 0; 
-    width: 100%; 
-    height: 100%;
-    background-image: url('img/broto_de_ouro.png');
-    background-size: cover;
-    background-position: center;
-    filter: blur(8px) brightness(0.5); /* Aplica o desfoque e escurece um pouco para dar contraste */
-    transform: scale(1.1); /* Evita bordas brancas causadas pelo desfoque */
-    z-index: 1;
-}
-
-/* Garante que os textos fiquem por cima do desfoque */
-.hero h1, .hero p {
-    position: relative;
-    z-index: 2;
+    max-width: 800px;
+    margin: 4rem auto 2rem auto;
+    padding: 0 1rem;
+    color: #FFF;
+    text-shadow: 3px 3px 4px rgba(0, 0, 0, 0.8); /* Sombra reforçada para excelente leitura */
 }
 
 .hero h1 {
     font-family: var(--font-pixel);
-    font-size: 3.8rem;
+    font-size: 4rem;
     line-height: 1.1;
     margin-bottom: 1.5rem;
     color: #FFF;
-    text-shadow: 3px 3px 0px #000;
 }
 
 .hero h1 strong {
@@ -167,9 +152,8 @@ header {
     font-size: 1.3rem;
     max-width: 650px;
     margin: 0 auto;
-    color: #FFF;
+    color: #F5F5F5;
     line-height: 1.6;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
     font-weight: 500;
 }
 
@@ -178,27 +162,27 @@ header {
     display: flex;
     justify-content: center;
     gap: 12px;
-    margin: 2.5rem auto;
+    margin: 3rem auto;
     flex-wrap: wrap;
     max-width: 90%;
-    position: relative;
-    z-index: 10;
 }
 
 .tab-btn {
     background-color: #D29A53;
     color: #FFF;
     border: 4px solid var(--menu-border);
-    box-shadow: inset -4px -4px 0px #94632D, inset 4px 4px 0px #F5C285, 0 4px 0px rgba(0,0,0,0.2);
+    box-shadow: inset -4px -4px 0px #94632D, inset 4px 4px 0px #F5C285, 0 4px 0px rgba(0,0,0,0.3);
     padding: 0.8rem 1.5rem;
     cursor: pointer;
     font-family: var(--font-pixel);
     font-size: 1.6rem;
     outline: none;
+    transition: transform 0.1s;
 }
 
 .tab-btn:hover {
     background-color: #E2AC65;
+    transform: translateY(-2px);
 }
 
 /* Botão Voltar */
@@ -206,8 +190,6 @@ header {
     display: flex;
     justify-content: center;
     margin-bottom: 1.5rem;
-    position: relative;
-    z-index: 10;
 }
 
 .back-btn {
@@ -231,8 +213,6 @@ header {
     max-width: 850px;
     margin: 0 auto;
     padding: 0 1rem;
-    position: relative;
-    z-index: 10;
 }
 
 .content-card {
@@ -241,7 +221,7 @@ header {
     outline: 2px solid #FDF5E6;
     outline-offset: -8px;
     padding: 2.5rem;
-    box-shadow: 0 8px 0px rgba(0,0,0,0.15);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.3);
     display: none;
 }
 
@@ -308,12 +288,10 @@ footer {
     font-family: var(--font-pixel);
     font-size: 1.4rem;
     color: #FFF;
-    text-shadow: 1px 1px 0px #000;
-    position: relative;
-    z-index: 10;
+    text-shadow: 2px 2px 0px #000;
 }
 
 @media (max-width: 768px) {
-    .hero h1 { font-size: 2.3rem; }
+    .hero h1 { font-size: 2.5rem; }
     .content-card { padding: 1.5rem; }
 }
