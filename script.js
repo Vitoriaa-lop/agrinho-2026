@@ -11,25 +11,29 @@ window.onload = function() {
     const painelBotoes = document.getElementById('painel-botoes');
     const btnVoltar = document.getElementById('btn-voltar');
 
-    // 1. EVENTO: Clicar no Broto de Ouro em tela cheia para entrar no site
+    // 1. EVENTO: Clicar na Splash Screen ativa o fundo desfocado na tela inicial
     if (telaEntrada) {
         telaEntrada.addEventListener('click', function() {
-            // Esconde a tela de entrada de vez
             telaEntrada.classList.add('hidden');
             
-            // Revela o site principal
+            // Adiciona o broto desfocado no fundo do site
+            document.body.classList.add('fundo-desfocado');
+            
             if (cabecalhoPrincipal) cabecalhoPrincipal.classList.remove('hidden');
             if (telaInicialHero) telaInicialHero.classList.remove('hidden');
             if (painelBotoes) painelBotoes.classList.remove('hidden');
         });
     }
 
-    // 2. EVENTO: Ao clicar em qualquer um dos 4 botões do menu principal
+    // 2. EVENTO: Ao clicar em um botão de conteúdo, remove o desfoque para ver o card no verde
     botoesAcao.forEach(botao => {
         botao.addEventListener('click', function() {
             if (telaInicialHero) telaInicialHero.classList.add('hidden');
             if (painelBotoes) painelBotoes.classList.add('hidden');
             if (btnVoltar) btnVoltar.classList.add('show');
+
+            // REMOVE o desfoque para deixar o fundo verde padrão nos cards
+            document.body.classList.remove('fundo-desfocado');
 
             cardsInformacao.forEach(card => card.classList.remove('active'));
 
@@ -41,11 +45,14 @@ window.onload = function() {
         });
     });
 
-    // 3. EVENTO: Ao clicar no botão "Voltar para o Início"
+    // 3. EVENTO: Ao clicar em "Voltar", reativa o broto desfocado no fundo
     if (btnVoltar) {
         btnVoltar.addEventListener('click', function() {
             cardsInformacao.forEach(card => card.classList.remove('active'));
             btnVoltar.classList.remove('show');
+            
+            // ADICIONA de volta o desfoque porque voltamos para a tela inicial
+            document.body.classList.add('fundo-desfocado');
             
             if (telaInicialHero) telaInicialHero.classList.remove('hidden');
             if (painelBotoes) painelBotoes.classList.remove('hidden');
