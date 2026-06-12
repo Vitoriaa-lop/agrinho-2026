@@ -53,19 +53,14 @@ header {
     color: #FFECB3;
 }
 
-/* Hero (Tela Inicial) */
-.hero {
-    text-align: center;
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 0 1rem;
-    color: #FFF;
-    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.5);
-    display: block; /* Visível por padrão */
+/* Elementos da Tela Inicial */
+.hero, .tabs-container {
+    display: block;
+    transition: all 0.2s;
 }
 
-/* Classe especial para sumir com a tela inicial */
-.hero.hidden {
+/* Classes para esconder elementos da Tela Inicial */
+.hero.hidden, .tabs-container.hidden {
     display: none !important;
 }
 
@@ -74,6 +69,15 @@ header {
     height: auto;
     image-rendering: pixelated;
     margin-bottom: 1rem;
+}
+
+.hero {
+    text-align: center;
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    color: #FFF;
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.5);
 }
 
 .hero h1 {
@@ -119,13 +123,7 @@ header {
     transform: translateY(-2px);
 }
 
-.tab-btn.active {
-    background-color: #4CAF50;
-    box-shadow: inset -4px -4px 0px #2E7D32, inset 4px 4px 0px #A1E5AB;
-    transform: translateY(2px);
-}
-
-/* Container e Estilo do Botão Voltar */
+/* Estilo do Botão Voltar */
 .navigation-container {
     display: flex;
     justify-content: center;
@@ -133,7 +131,7 @@ header {
 }
 
 .back-btn {
-    background-color: #BD3A3A; /* Vermelho Estilo Cancelar/Voltar do jogo */
+    background-color: #BD3A3A; 
     color: #FFF;
     border: 4px solid var(--menu-border);
     box-shadow: inset -4px -4px 0px #7D2626, inset 4px 4px 0px #F58585, 0 4px 0px rgba(0,0,0,0.2);
@@ -141,7 +139,7 @@ header {
     cursor: pointer;
     font-family: var(--font-pixel);
     font-size: 1.4rem;
-    display: none; /* Começa escondido */
+    display: none; 
     transition: background 0.2s;
 }
 
@@ -149,7 +147,6 @@ header {
     background-color: #D94B4B;
 }
 
-/* Classe para exibir o botão de voltar */
 .back-btn.show {
     display: block !important;
 }
@@ -167,7 +164,7 @@ header {
     outline-offset: -8px;
     padding: 3rem;
     box-shadow: 0 10px 0px rgba(0,0,0,0.15);
-    display: none; /* Todos começam totalmente ocultos */
+    display: none; 
     animation: pixelAppear 0.2s steps(2) forwards;
 }
 
@@ -180,69 +177,4 @@ header {
     font-size: 3rem;
     color: var(--text-color);
     margin-bottom: 1.5rem;
-    border-bottom: 4px dashed rgba(74, 35, 6, 0.2);
-    padding-bottom: 0.5rem;
-}
-
-.card-image {
-    width: 100%;
-    max-height: 350px;
-    object-fit: cover;
-    border: 4px solid var(--menu-border);
-    box-shadow: 0 6px 0px rgba(0,0,0,0.1);
-    margin-bottom: 2rem;
-    display: block;
-    image-rendering: pixelated;
-}
-
-.content-card p {
-    font-size: 1.1rem;
-    margin-bottom: 2rem;
-    font-weight: 500;
-}
-
-.topic-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
-}
-
-.topic-list li {
-    position: relative;
-    padding-left: 2rem;
-    font-size: 1.1rem;
-}
-
-.topic-list li::before {
-    content: "▪";
-    position: absolute;
-    left: 0;
-    top: -2px;
-    color: #BD5300;
-    font-size: 1.8rem;
-}
-
-.topic-list li strong {
-    color: #933A00;
-}
-
-footer {
-    text-align: center;
-    margin-top: 4rem;
-    font-family: var(--font-pixel);
-    font-size: 1.4rem;
-    color: #FFF;
-    text-shadow: 1px 1px 0px #000;
-}
-
-@keyframes pixelAppear {
-    from { opacity: 0; transform: scale(0.95); }
-    to { opacity: 1; transform: scale(1); }
-}
-
-@media (max-width: 768px) {
-    .hero h1 { font-size: 2.5rem; }
-    .content-card { padding: 1.5rem; }
-    .logo { font-size: 2.2rem; }
-}
+    border-bottom: 4px dashed rgba(74, 35, 6
